@@ -1,3 +1,3 @@
 # CanvasUtil
 
-A Hollow Knight: Silksong mod.
+A utility for making in-game UIs in Hollow Knight: Silksong.
