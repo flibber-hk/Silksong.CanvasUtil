@@ -57,7 +57,7 @@
     </PropertyGroup>
     <Copy
       SourceFiles="@(Binaries)"
-      DestinationFolder="$(SilksongFolder)/BepInEx/plugins/flibber-hk-$(AssemblyTitle)"
+      DestinationFolder="$(SilksongFolder)/BepInEx/plugins/flibber-$(AssemblyTitle)"
       Condition="'$(SilksongFolder)' != '' And Exists('$(SilksongFolder)')"
     />
     <RemoveDir Directories="$(ThunderstoreDir)/temp;$(ThunderstoreDir)/dist" />
