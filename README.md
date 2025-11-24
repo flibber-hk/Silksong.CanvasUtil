@@ -21,3 +21,42 @@ as with the parent.
 For example, to put a child in the bottom-right corner of the parent, you can set the anchor pivot, anchor min and anchor max to (1, 0) - this
 represents the bottom right corner (max x, min y). The anchor position should be (0, 0) to represent the fact that the anchor pivot
 (bottom right corner of parent) and anchor (bottom right corner of child) are the same point.
+
+
+## DebugPanel
+
+A utility added to help in mod development. Sometimes you want to know information that may change
+each frame, so logging is probably not the most helpful way to do it. CanvasUtil provides a utility
+called DebugPanel to help with this.
+
+The easiest way to do this is to simply do the following:
+
+```
+// In your plugin class, define a function to get the text to display
+private static string GetDebugPanelText()
+{
+    // Code goes here. This function will be called each frame
+    // to figure out what the text to display should be.
+}
+
+// In your plugin Awake method
+CanvasUtil.DebugPanel.Create(GetDebugPanelText);
+```
+
+An alternative approach can be as follows:
+```
+// In your plugin class, define a function to update the text and an event raised when updating the text
+private static event System.Action<string>? OnUpdateDebugPanelText;
+internal static void UpdateDebugPanelText(string newText) => OnUpdateDebugPanelText?.Invoke(newText);
+
+// In your plugin Awake method
+var dp = CanvasUtil.DebugPanel.Create();
+OnUpdateDebugPanelText += dp.SetText;
+
+// Anywhere else in your mod
+MyPlugin.UpdateDebugPanelText("the new text to display");
+```
+
+This is designed to be used while developing mods and is not expected to be used in published versions of mods.
+In both of the example codes, simply deleting the code from the "In your plugin Awake method" section
+will stop the debug panel from being created without breaking any other aspect of your mod.
