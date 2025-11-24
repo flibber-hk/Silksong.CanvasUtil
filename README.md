@@ -9,6 +9,9 @@ Typically you will start by creating a whole-screen canvas with something like
 GameObject canvas = CanvasUtil.CanvasUtil.CreateCanvas(RenderMode.ScreenSpaceOverlay, new Vector2(1920, 1080));
 ```
 
+Note that CanvasUtil.CanvasUtil appears at the start with CanvasUtil repeated. You may want to put something
+like `using CUtil = CanvasUtil.CanvasUtil;` at the top of your file, so you can call `CUtil.CreateCanvas`.
+
 If you have a canvas or panel GameObject `parent` and you want to add a child panel, then to construct the
 RectData to pass into the CreatePanel methods:
 * RectSizeDelta should be the size of the child panel.
